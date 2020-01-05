@@ -3,12 +3,12 @@
      "LastName"  : "De Niro",
      "Birthday"  :  "1943-08-17",
      "Image"     :  "..\\public\\RobertDeNiro.jpg",
-     "IMDBLink"  :  "https://www.imdb.com/name/nm0000134/?ref_=nv_sr_srsg_0"
+     "IMDBLink"  :  "https://www.imdb.com/name/nm0000134/"
     },
     {   "FirstName": "Henry",
         "LastName"  : "Cavill",
         "Birthday"  :  "1983-05-05",
-        "Image"     :  "..\\public\\Henry_cacill.jpg",
+        "Image"     :  "C:\\Users\\eyal1\\Documents\\Actore_gallery\\Actore_gallery\\public\\Henry_Cavill.jpg",
         "IMDBLink"  :  "https://www.imdb.com/name/nm0147147/"
        },
        {"FirstName": "MyAnna",

@@ -4,7 +4,11 @@ import data from "./actorsData.json"
 class Gallery extends Component{
     render(){
         return(
-        <div>{data[0].FirstName}</div>
+        <div>{data[1].FirstName}
+        <img src={data[1].Image} alt="stam"/>
+
+        </div>
+
         );
     }
 }
