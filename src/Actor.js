@@ -9,7 +9,7 @@ export default class Actor extends Component {
         return (
             <div>
                 <Card>
-                    <Card.Img variant="top" src={this.props.actor.Image} width="150px"/>
+                    <Card.Img variant="top" src={this.props.actor.Image}/>
                     <Card.Body>
                         <Card.Title>{this.props.actor.FirstName} {this.props.actor.LastName}</Card.Title>
                     </Card.Body>
