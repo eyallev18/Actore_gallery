@@ -56,13 +56,14 @@ class Gallery extends Component {
 
         const actorCards = data.map((actor,index) =>
 
-
+           
             <Col md={4} key={index}>
                 <Actor actor={actor}/>
             </Col>
+            
         )
 
-
+            
 
 
         return (
