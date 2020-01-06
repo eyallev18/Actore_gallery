@@ -1,13 +1,37 @@
-import React,{Component} from "react"
+import React, { Component } from "react"
 import data from "./actorsData.json"
+import Actor from './Actor'
 
-class Gallery extends Component{
-    render(){
-        return(
-        <div>{data[1].FirstName}
-        <img src={data[1].Image} alt="stam"/>
+import { Container, Row, Col } from 'react-bootstrap';
 
-        </div>
+class Gallery extends Component {
+    constructor(props) {
+        super(props);
+
+    }
+    render() {
+
+        const actorCards = data.map(actor =>
+
+
+            <Col md={4} >
+                <Actor actor={actor}></Actor>
+            </Col>
+        )
+
+
+
+
+        return (
+            <div>
+                <Container>
+                    <Row>
+                        {actorCards}
+                    </Row>
+                </Container>
+
+
+            </div>
 
         );
     }
