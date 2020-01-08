@@ -10,7 +10,7 @@ class Gallery extends Component {
         super(props);
         this.state = {
             actorSearchResults: [],
-            actorSearchResultStrings: [],
+            actorSearchResultStrings: "",
             actors: []
         }
 
@@ -18,11 +18,16 @@ class Gallery extends Component {
     }  
         searchActors =(e) => {
 
+           var selectedActors=[]
+
+         
+
             
            
                 this.setState({
                     
                     actorSearchResultStrings: e.target.value
+                   
                 })
             
     
@@ -31,13 +36,31 @@ class Gallery extends Component {
     render() {
         
         const { actorSearchResultStrings } = this.state;
+        
+     
+        // filter
+        
+        let filteredActors = [];
+        if (actorSearchResultStrings === "") {
+            filteredActors = data;
+        } else {
+            for (var i=0;i<data.length;i++){
+               let lowFirst= data[i].FirstName.toLowerCase();
+               let lowsearch = actorSearchResultStrings.toLowerCase();
+            if(lowFirst.startsWith(lowsearch)){
+                filteredActors.push(data[i])
+            }
+        }
+        }
 
-        const actorCards = data.map((actor,index) =>
 
+        const actorCards = filteredActors.map((actor,index) =>
+        
           
             <Col md={4} key={index}>
                 <Actor actor={actor}/>
             </Col>
+            
          
         )
 
@@ -46,6 +69,7 @@ class Gallery extends Component {
 
         return (
             <div>
+                
                 <Container>
               {/*  <SearchBox searchPlaceholder="Search Actor" results={actorSearchResultStrings}
                         onSearchChange={this.searchActors}  /> */}
