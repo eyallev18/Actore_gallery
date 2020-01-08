@@ -5,16 +5,14 @@ export default class Actor extends Component {
     constructor(props) {
         super(props);
         this.actorAge = this.actorAge.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+        
         }
         actorAge(){
             const currentYear = new Date().getFullYear();
             const yearOfBorn = Number(this.props.actor.Birthday.split("-")[0]); 
             return(currentYear-yearOfBorn);
     }
-    handleClick() {
-      return  ('The link was clicked');
-    }
+    
     render() {
         return (
             <div>
