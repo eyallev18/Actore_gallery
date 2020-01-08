@@ -15,22 +15,15 @@ class Gallery extends Component {
         }
 
         this.searchActors = this.searchActors.bind(this);
+        
     }
+    
     searchActors = (e) => {
-
         var selectedActors = []
-
-
-
-
-
         this.setState({
 
             actorSearchResultStrings: e.target.value
-
         })
-
-
     }
 
     render() {
