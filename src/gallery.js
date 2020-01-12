@@ -23,6 +23,7 @@ class Gallery extends Component {
       actorSearchResultStrings: "",
       selectedEventKey: null,
       value: ""
+
       /*actors: [] */
     };
 
@@ -39,14 +40,15 @@ class Gallery extends Component {
   sortSelected(event) {
     this.setState({ value: event.target.value });
   }
+
   render() {
     const { actorSearchResultStrings } = this.state;
     const { value } = this.state;
     let sortOptions = ["FirstName", "LastName", "Age"];
-
+    const newData = data.slice();
     // filter
     if (value === "FirstName" || value === "LastName") {
-      data.sort(function(a, b) {
+      newData.sort(function(a, b) {
         var x = a[value].toLowerCase();
         var y = b[value].toLowerCase();
         if (x < y) {
@@ -60,18 +62,18 @@ class Gallery extends Component {
     }
     let filteredActors = [];
     if (actorSearchResultStrings === "") {
-      filteredActors = data;
+      filteredActors = newData;
     } else {
       var res = actorSearchResultStrings.split(" ");
 
-      for (var i = 0; i < data.length; i++) {
-        let lowFirst = data[i].FirstName.toLowerCase();
+      for (var i = 0; i < newData.length; i++) {
+        let lowFirst = newData[i].FirstName.toLowerCase();
 
-        let lowLast = data[i].LastName.toLowerCase();
+        let lowLast = newData[i].LastName.toLowerCase();
         if (res.length === 1) {
           let lowsearch = res[0].toLowerCase();
           if (lowFirst.startsWith(lowsearch) || lowLast.startsWith(lowsearch)) {
-            filteredActors.push(data[i]);
+            filteredActors.push(newData[i]);
           }
         } else {
           let lowsearchFirst = res[0].toLowerCase();
@@ -80,7 +82,7 @@ class Gallery extends Component {
             lowFirst === lowsearchFirst &&
             lowLast.startsWith(lowsearchLast)
           ) {
-            filteredActors.push(data[i]);
+            filteredActors.push(newData[i]);
           }
         }
       }
@@ -92,7 +94,12 @@ class Gallery extends Component {
       }
 
 
-    }*/
+    }*/ /*else if (value === "notSorted") {
+      filteredActors = [];
+      for (let i = 0; i < unSortedArray.length; i++) {
+        filteredActors.push(unSortedArray[i]);
+      }
+    } */
     /* if (value === "") {
       var unSortedArray = [];
       for (let i = 0; i < filteredActors.length; i++) {
@@ -100,17 +107,13 @@ class Gallery extends Component {
       }
     } */
     /*if (value === "" || value === "unSorted") {
-    } else  */ /*else if (value === "notSorted") {
-      filteredActors = [];
-      for (let i = 0; i < unSortedArray.length; i++) {
-        filteredActors.push(unSortedArray[i]);
-      }
-    } */
-    const actorCards = filteredActors.map((actor, index) => (
-      <Col md={4} key={index}>
-        <Actor actor={actor} />
-      </Col>
-    ));
+    } else  */ const actorCards = filteredActors.map(
+      (actor, index) => (
+        <Col md={4} key={index}>
+          <Actor actor={actor} />
+        </Col>
+      )
+    );
 
     return (
       <div>
