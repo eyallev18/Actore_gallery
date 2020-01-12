@@ -14,6 +14,7 @@ import {
   Button,
   Dropdown
 } from "react-bootstrap";
+import ActorModel from "./ActorModel.js";
 
 class Gallery extends Component {
   constructor(props, e) {
@@ -22,11 +23,23 @@ class Gallery extends Component {
       /*actorSearchResults: [],*/
       actorSearchResultStrings: "",
       selectedEventKey: null,
-      value: ""
+      value: "",
+      actors: data.map(
+        actoritem =>
+          new ActorModel(
+            actoritem.FirstName,
+            actoritem.LastName,
+            actoritem.Birthday,
+            actoritem.Image,
+            actoritem.IMDBLink
+          )
+      )
+
+      /*carsData.map(plainCar => new CarModel(plainCar))*/
 
       /*actors: [] */
     };
-
+    console.log(this.state.actors[1]);
     this.searchActors = this.searchActors.bind(this);
     this.sortSelected = this.sortSelected.bind(this);
   }
@@ -42,13 +55,13 @@ class Gallery extends Component {
   }
 
   render() {
-    const { actorSearchResultStrings } = this.state;
+    const { actorSearchResultStrings, actors } = this.state;
     const { value } = this.state;
     let sortOptions = ["FirstName", "LastName", "Age"];
-    const newData = data.slice();
+    const newactors = actors.slice();
     // filter
     if (value === "FirstName" || value === "LastName") {
-      newData.sort(function(a, b) {
+      newactors.sort(function(a, b) {
         var x = a[value].toLowerCase();
         var y = b[value].toLowerCase();
         if (x < y) {
@@ -59,21 +72,25 @@ class Gallery extends Component {
         }
         return 0;
       });
+    } else if (value === "Age") {
+      newactors.sort(function(a, b) {
+        return a.actorAge() - b.actorAge();
+      });
     }
     let filteredActors = [];
     if (actorSearchResultStrings === "") {
-      filteredActors = newData;
+      filteredActors = newactors;
     } else {
       var res = actorSearchResultStrings.split(" ");
 
-      for (var i = 0; i < newData.length; i++) {
-        let lowFirst = newData[i].FirstName.toLowerCase();
+      for (var i = 0; i < newactors.length; i++) {
+        let lowFirst = newactors[i].FirstName.toLowerCase();
 
-        let lowLast = newData[i].LastName.toLowerCase();
+        let lowLast = newactors[i].LastName.toLowerCase();
         if (res.length === 1) {
           let lowsearch = res[0].toLowerCase();
           if (lowFirst.startsWith(lowsearch) || lowLast.startsWith(lowsearch)) {
-            filteredActors.push(newData[i]);
+            filteredActors.push(newactors[i]);
           }
         } else {
           let lowsearchFirst = res[0].toLowerCase();
@@ -82,7 +99,7 @@ class Gallery extends Component {
             lowFirst === lowsearchFirst &&
             lowLast.startsWith(lowsearchLast)
           ) {
-            filteredActors.push(newData[i]);
+            filteredActors.push(newactors[i]);
           }
         }
       }
