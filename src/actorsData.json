@@ -2,13 +2,13 @@
     {"FirstName": "Robert",
      "LastName"  : "De Niro",
      "Birthday"  :  "1943-08-17",
-     "Image"     :  "RobertDeNiro.jpg",
+     "Image"     :  "RobertDeniro.jpg",
      "IMDBLink"  :  "https://www.imdb.com/name/nm0000134/"
     },
     {   "FirstName": "Henry",
         "LastName"  : "Cavill",
         "Birthday"  :  "1983-05-05",
-        "Image"     :  "Henry_Cavill.jpg",
+        "Image"     :  "Henry_cavill.jpg",
         "IMDBLink"  :  "https://www.imdb.com/name/nm0147147/"
        },
        {"FirstName": "MyAnna",
